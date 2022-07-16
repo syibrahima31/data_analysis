@@ -1,4 +1,3 @@
-
 import numpy as np
 
 
@@ -11,7 +10,11 @@ class Kmeans:
         """
         self.k = k
         self.max_iter = max_iter
+        
+        # initialisation des clusters 
         self.clusters = [[] for _ in range(self.k)]
+        
+        # initalisations des centroids 
         self.centroids = None
 
     def fit(self, features: np.ndarray):
@@ -41,11 +44,11 @@ class Kmeans:
             # Etape 3 : regarder est ce que l'algo converge
         return self.clusters
 
-    def make_clusters(self, centroids) -> list:
+    def make_clusters(self, centroids:np.ndarray) -> list:
         """_summary_
 
         Args:
-            centroids (_type_): le tableau contenant les centres 
+            centroids (np.ndarray): le tableau contenant les centres 
 
         Returns:
             list : la liste des clusters 
@@ -72,3 +75,7 @@ class Kmeans:
             float: la distance 
         """
         return np.sqrt(np.sum((x-y)**2))
+
+
+
+
