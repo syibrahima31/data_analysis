@@ -38,17 +38,24 @@ class Kmeans:
         # la boucle d'execution de l'algo
 
         for _ in range(self.max_iter):
-            print(_)
             # Etape 1 : mise a jour des clusters
+            print(_)
 
             self.clusters = self.make_clusters(self.centroids)
 
+            previous_centroid = self.centroids
             # Etape 2 : update des centroids
 
             self.centroids = self.update_centroids(self.clusters)
 
             # Etape 3 : regarder est ce que l'algo converge
-        
+            
+            if self.converge(previous_centroid, self.centroids) == 0 :
+                break 
+    
+    
+    def converge(self, prev_centroid, new_centroid):
+        return sum(self.dist_euclid(prev_centroid[i], new_centroid[i]) for i in range(self.k))
     
             
        
@@ -110,3 +117,4 @@ class Kmeans:
 if __name__ == "__main__": 
     model = Kmeans(3, 100)
     model.fit(X)
+    print(model.centroids)
