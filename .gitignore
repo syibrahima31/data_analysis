@@ -29,6 +29,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+progs
 
 ### macOS Patch ###
 # iCloud generated files
@@ -223,4 +224,3 @@ cython_debug/
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,macos
 
-progs/
