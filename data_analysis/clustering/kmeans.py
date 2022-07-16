@@ -1,4 +1,8 @@
 import numpy as np
+from sklearn.datasets import load_iris
+
+
+X = load_iris().data 
 
 
 class Kmeans:
@@ -24,25 +28,48 @@ class Kmeans:
         """
         self.features = features
 
-        self.nrow, self.col = features.shape
+        self.nrow, self.ncol = features.shape
 
         # etape 1 : initialisation des centroides
         index_centroids = np.random.choice(self.nrow, self.k, replace=False)
         self.centroids = features[index_centroids]
 
+     
         # la boucle d'execution de l'algo
 
         for _ in range(self.max_iter):
+            print(_)
             # Etape 1 : mise a jour des clusters
 
             self.clusters = self.make_clusters(self.centroids)
 
             # Etape 2 : update des centroids
 
-            self.centroids = update_centroids(parameters)
+            self.centroids = self.update_centroids(self.clusters)
 
             # Etape 3 : regarder est ce que l'algo converge
-        return self.clusters
+        
+    
+            
+       
+    
+    
+    
+    def update_centroids(self, clusters): 
+        
+        centroids = np.zeros(shape=(self.k, self.ncol))
+        
+        for c in range(self.k): 
+            index_c = clusters[c]
+            center_c = self.features[index_c].mean(axis=0)
+            centroids[c] = center_c 
+        
+        return centroids 
+        
+    
+    
+    
+    
 
     def make_clusters(self, centroids:np.ndarray) -> list:
         """_summary_
@@ -79,3 +106,7 @@ class Kmeans:
 
 
 
+
+if __name__ == "__main__": 
+    model = Kmeans(3, 100)
+    model.fit(X)
