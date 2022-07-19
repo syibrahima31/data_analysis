@@ -1,21 +1,7 @@
-import numpy as np
-from clustering import kmeans
-from sklearn.datasets import load_iris
 
+from tabula import read_pdf
+from tabulate import tabulate
 
-# chargement du jeu de données
-features = load_iris().data
-
-
-# cest le nombre de clusters
-k = 3
-
-# c'est le nombre maximal d'ittération
-max_iter = 300
-
-model = kmeans.Kmeans(k=k, max_iter=max_iter)
-clusters = model.fit(features)
-
-
-if __name__ == "__main__":
-    print(clusters)
+#reads table from pdf file
+df = read_pdf("abc.pdf", pages="all")  # address of pdf file
+print(tabulate(df))

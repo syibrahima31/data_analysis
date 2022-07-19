@@ -115,6 +115,9 @@ class Kmeans:
 
 
 if __name__ == "__main__": 
+    # instanciation du model 
     model = Kmeans(3, 100)
+    
+    # lentrainement du model 
     model.fit(X)
     print(model.centroids)
